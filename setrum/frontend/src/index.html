@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SETRUM — PLN Mobile</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+:root{
+  --bg:#f0f2f5;--surface:#fff;--surf2:#f8f9fa;--border:#e4e6ea;
+  --text:#1a1d23;--t2:#5f6368;--t3:#9aa0a6;
+  --blue:#003d82;--sky:#0073e6;--sky-l:#e8f1fb;
+  --green:#1a7f3c;--green-bg:#e8f5ec;
+  --red:#c5221f;--red-bg:#fce8e6;
+  --amber:#92580a;--amber-bg:#fef3c7;
+  --purple:#5b21b6;--purple-bg:#ede9fe;
+  --r:10px;--r-sm:6px;
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+.topbar{background:var(--blue);height:64px;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
+.tbar-l{display:flex;align-items:center;gap:6px}
+.hdot{width:7px;height:7px;border-radius:50%;background:#6b7280;display:inline-block;margin-right:5px;transition:background .3s}
+.hdot.ok{background:#4ade80}
+.hlabel{color:rgba(255,255,255,.6);font-size:11px}
+.layout{display:grid;grid-template-columns:210px 1fr;min-height:calc(100vh - 64px)}
+.sidebar{background:var(--surface);border-right:1px solid var(--border);padding:1rem 0;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto}
+.nav-lbl{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;padding:0 1rem;margin:.875rem 0 .3rem}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px 1rem;font-size:12px;font-weight:500;color:var(--t2);cursor:pointer;transition:all .15s;border-left:2px solid transparent}
+.nav-item:hover{background:var(--surf2);color:var(--text)}
+.nav-item.active{background:var(--sky-l);color:var(--sky);border-left-color:var(--sky);font-weight:600}
+.nav-item .ti{font-size:15px;width:16px;text-align:center;flex-shrink:0}
+.main{padding:1.5rem;overflow-y:auto}
+.page{display:none}.page.active{display:block}
+.sec{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+.card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--shadow);margin-bottom:14px}
+.card-h{padding:.875rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.card-t{font-size:13px;font-weight:600}
+.card-b{padding:1.25rem}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.stat{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:.875rem 1.25rem;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.stat-lbl{font-size:11px;color:var(--t2);margin-bottom:4px}
+.stat-val{font-size:24px;font-weight:700;line-height:1;transition:color .2s}
+.stat-sub{font-size:11px;color:var(--t3);margin-top:3px}
+.stat.bl{border-left:3px solid var(--sky)}.stat.gr{border-left:3px solid var(--green)}
+.stat.am{border-left:3px solid #d97706}.stat.rd{border-left:3px solid var(--red)}
+.stat .spark{position:absolute;right:10px;bottom:8px;width:64px;height:26px;opacity:.85;pointer-events:none}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}
+.b-pos{background:var(--green-bg);color:var(--green)}.b-neg{background:var(--red-bg);color:var(--red)}
+.b-neu{background:var(--amber-bg);color:var(--amber)}.b-esc{background:var(--purple-bg);color:var(--purple)}
+.b-blue{background:var(--sky-l);color:var(--blue)}.b-gray{background:var(--surf2);color:var(--t2);border:1px solid var(--border)}
+.btn{padding:8px 16px;border-radius:var(--r-sm);font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .15s;font-family:inherit;display:inline-flex;align-items:center;gap:5px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover:not(:disabled){background:#002660}
+.btn-success{background:var(--green);color:#fff}.btn-success:hover:not(:disabled){background:#145e2c}
+.btn-ghost{background:transparent;color:var(--t2);border:1px solid var(--border)}.btn-ghost:hover:not(:disabled){background:var(--surf2)}
+.btn-full{width:100%;justify-content:center;margin-top:10px}
+.btn-sm{padding:5px 10px;font-size:11px}
+label{display:block;font-size:11px;font-weight:600;color:var(--t2);margin-bottom:5px;margin-top:12px}
+label:first-child{margin-top:0}
+input[type=number],input[type=text],select,textarea{width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-family:inherit;font-size:12px;color:var(--text);background:var(--surf2);transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--sky);background:#fff}
+textarea{resize:vertical;min-height:80px}
+.scale-val{text-align:center;font-size:28px;font-weight:700;color:var(--blue);margin:8px 0 2px}
+.scale-unit{font-size:11px;color:var(--t2);text-align:center;margin-bottom:8px}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--border);outline:none;border:none;padding:0;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--sky);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.scale-labels{display:flex;justify-content:space-between;margin-top:4px}
+.scale-lbl{font-size:10px;color:var(--t3)}
+.chip-group{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip,.star-chip{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--surf2);color:var(--t2);transition:all .15s}
+.chip:hover,.star-chip:hover{border-color:var(--sky);color:var(--sky)}
+.chip.active{background:var(--sky-l);border-color:var(--sky);color:var(--sky)}
+.star-chip.active{border-color:#f59e0b;color:#92580a;background:#fef3c7}
+.prog-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin:6px 0}
+.prog-fill{height:100%;border-radius:4px;transition:width .5s ease;background:var(--sky)}
+.prog-info{display:flex;justify-content:space-between;font-size:11px;color:var(--t2)}
+.log-box{background:#0d1117;border-radius:var(--r-sm);padding:.75rem 1rem;height:300px;overflow-y:auto;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.75}
+.ln{color:#8b949e}.ln.ok{color:#3fb950}.ln.err{color:#f85149}.ln.info{color:#79c0ff}.ln.warn{color:#e3b341}
+.log-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#3fb950;display:inline-block;margin-right:5px;animation:pulse 1.5s ease infinite}
+.live-dot.idle{background:var(--t3);animation:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.job-bar{background:var(--sky-l);border:1px solid #b3d4f5;border-radius:var(--r-sm);padding:10px 14px;display:none;align-items:center;gap:10px;margin-bottom:14px;font-size:12px}
+.job-bar.on{display:flex}.job-bar.done{background:var(--green-bg);border-color:#a3d9b5}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:9px 14px;font-size:10px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.5px;background:var(--surf2);border-bottom:1px solid var(--border)}
+td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafbfc}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.chart-h{height:200px;position:relative}
+.pipeline{display:flex;gap:5px;align-items:center;margin:10px 0}
+.step{flex:1;padding:5px 6px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surf2);font-size:10px;text-align:center;color:var(--t3);transition:all .3s;font-weight:600;position:relative}
+.step.done{border-color:var(--green);background:var(--green-bg);color:var(--green)}
+.step.run{border-color:var(--sky);background:var(--sky-l);color:var(--sky);animation:stepPulse 1s ease-in-out infinite}
+.step.skip{border-color:var(--border);background:var(--surf2);color:var(--t3);opacity:.55}
+.step.esc{border-color:var(--purple);background:var(--purple-bg);color:var(--purple)}
+@keyframes stepPulse{0%,100%{box-shadow:0 0 0 0 rgba(0,115,230,.35)}50%{box-shadow:0 0 0 4px rgba(0,115,230,0)}}
+.arr{color:var(--t3);font-size:10px;flex-shrink:0}
+.arr.lit{color:var(--sky);transition:color .3s}
+.empty{padding:3rem;text-align:center;color:var(--t3);font-size:13px}
+.spin{width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--sky);border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:20px;right:20px;background:#1a1d23;color:#fff;padding:10px 16px;border-radius:var(--r-sm);font-size:12px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9999}
+.toast.show{opacity:1}
+.mono{font-family:'JetBrains Mono',monospace}
+.divider{height:1px;background:var(--border);margin:.875rem 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.conf-bar{height:4px;background:var(--border);border-radius:2px;margin-top:5px}
+.conf-fill{height:100%;border-radius:2px;background:var(--sky);transition:width .5s ease}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.res-item{background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px}
+.res-key{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.res-val{font-size:13px;font-weight:600}
+.filter-lbl{font-size:10px;font-weight:700;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+</style>
+</head>
+<body>
+<div id="toast" class="toast"></div>
+
+<div class="topbar">
+  <div class="tbar-l">
+    <img src="logo.png" alt="PLN Mobile & PLN" style="height:50px;width:auto;object-fit:contain;object-position:left center;flex-shrink:0;">
+    <div style="width:1px;height:32px;background:rgba(255,255,255,0.25);margin:0 6px;flex-shrink:0;"></div>
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:3px;">
+      <div style="display:flex;align-items:center;line-height:1;">
+        <span style="font-family:'Inter',sans-serif;font-size:22px;font-weight:900;letter-spacing:6px;color:#FFFFFF;">SET</span><span style="font-family:'Inter',sans-serif;font-size:22px;font-weight:900;letter-spacing:6px;color:#FFD700;">RUM</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" style="margin-left:8px;flex-shrink:0;" fill="#FFD700"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <p style="margin:0;font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.5px;font-family:'Inter',sans-serif;font-weight:400;white-space:nowrap;">Sentiment Analysis and Hierarchical Classification of PLN Mobile Reviews</p>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <span><span class="hdot" id="hDot"></span><span class="hlabel" id="hLabel">Connecting...</span></span>
+    <button class="btn btn-ghost btn-sm" style="color:#fff;border-color:rgba(255,255,255,.3)" onclick="refreshAll()"><i class="ti ti-refresh"></i> Refresh</button>
+  </div>
+</div>
+
+<div class="layout">
+<nav class="sidebar">
+  <div class="nav-lbl">Menu</div>
+  <div class="nav-item active" onclick="gotoPage('dashboard',this)"><i class="ti ti-chart-pie"></i> Dashboard</div>
+  <div class="nav-item" onclick="gotoPage('engine',this)"><i class="ti ti-settings"></i> Engine Control</div>
+  <div class="nav-item" onclick="gotoPage('manual',this)"><i class="ti ti-search"></i> Manual Analysis</div>
+  <div class="nav-item" onclick="gotoPage('results',this)"><i class="ti ti-table"></i> Analysis Results</div>
+  <div class="nav-item" onclick="gotoPage('rawdata',this)"><i class="ti ti-database"></i> Raw Scraped Data</div>
+  <div class="nav-lbl">Export</div>
+  <div class="nav-item" onclick="gotoPage('export',this)"><i class="ti ti-download"></i> Download Data</div>
+  <div class="nav-lbl">Info</div>
+  <div class="nav-item" onclick="gotoPage('about',this)"><i class="ti ti-info-circle"></i> About</div>
+</nav>
+
+<div class="main">
+
+<!-- DASHBOARD -->
+<div class="page active" id="page-dashboard">
+  <div class="sec">Overview</div>
+  <div class="stats-grid">
+    <div class="stat bl"><div class="stat-lbl">Total Reviews</div><div class="stat-val" id="sTotal">0</div><div class="stat-sub">from Play Store</div><svg class="spark" id="spkTotal" viewBox="0 0 64 26" preserveAspectRatio="none"></svg></div>
+    <div class="stat gr"><div class="stat-lbl">Analyzed</div><div class="stat-val" id="sAnalyzed">0</div><div class="stat-sub" id="sAnalyzedPct">0%</div><svg class="spark" id="spkAnalyzed" viewBox="0 0 64 26" preserveAspectRatio="none"></svg></div>
+    <div class="stat am"><div class="stat-lbl">Average Rating</div><div class="stat-val" id="sRating">0.0</div><div class="stat-sub">out of 5.0</div><svg class="spark" id="spkRating" viewBox="0 0 64 26" preserveAspectRatio="none"></svg></div>
+    <div class="stat rd"><div class="stat-lbl">LLM Escalation</div><div class="stat-val" id="sEsc">0</div><div class="stat-sub">L4–L5 via LLM</div><svg class="spark" id="spkEsc" viewBox="0 0 64 26" preserveAspectRatio="none"></svg></div>
+  </div>
+  <div class="charts-grid">
+    <div class="card"><div class="card-h"><span class="card-t">Sentiment Distribution</span><span class="badge b-blue" id="sentTotal">Loading...</span></div><div class="card-b"><div class="chart-h"><canvas id="sentChart"></canvas></div></div></div>
+    <div class="card"><div class="card-h"><span class="card-t">Layer 1 — Review Type</span><span style="font-size:11px;color:var(--t3)">Click a bar to drill down</span></div><div class="card-b"><div class="chart-h"><canvas id="catChart"></canvas></div></div></div>
+    <div class="card" id="layer2Card" style="display:none"><div class="card-h"><span class="card-t" id="layer2Title">Layer 2 — Domain</span><div style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;color:var(--t3)">Click a bar to view Layer 3</span><button onclick="resetLayer2()" style="font-size:11px;padding:4px 10px;border:1px solid var(--border);border-radius:6px;background:var(--surf2);color:var(--t2);cursor:pointer">← Back</button></div></div><div class="card-b"><div class="chart-h"><canvas id="layer2Chart"></canvas></div></div></div>
+    <div class="card" id="layer3Card" style="display:none"><div class="card-h"><span class="card-t" id="layer3Title">Layer 3 — Feature / Module</span><button onclick="resetLayer3()" style="font-size:11px;padding:4px 10px;border:1px solid var(--border);border-radius:6px;background:var(--surf2);color:var(--t2);cursor:pointer">← Back</button></div><div class="card-b"><div class="chart-h"><canvas id="layer3Chart"></canvas></div></div></div>
+  </div>
+  <div class="card"><div class="card-h"><span class="card-t">Recent Analyzed Reviews</span><button class="btn btn-ghost btn-sm" onclick="loadMini()"><i class="ti ti-refresh"></i> Refresh</button></div><div id="miniTable"><div class="empty">Loading...</div></div></div>
+</div>
+
+<!-- ENGINE CONTROL -->
+<div class="page" id="page-engine">
+  <div class="sec">Engine Control Panel</div>
+  <div class="job-bar" id="jobBar">
+    <div class="spin"></div>
+    <div style="flex:1">
+      <div style="font-weight:600;font-size:12px" id="jobMsg">Ready</div>
+      <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+      <div class="prog-info"><span id="progLbl">0/0</span><span id="progPct">0%</span></div>
+    </div>
+    <span class="badge b-blue" id="jobPct">0%</span>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-h"><span class="card-t"><i class="ti ti-cloud-download"></i> Scrape Play Store</span><span class="badge b-gray">Step 1</span></div>
+      <div class="card-b">
+        <div class="sec" style="margin-bottom:2px">Number of Reviews (multiples of 10)</div>
+        <div class="scale-val" id="scrapeDisp">200</div>
+        <div class="scale-unit">reviews to scrape</div>
+        <input type="range" id="scrapeSlider" min="10" max="1000" step="10" value="200" oninput="onScrapeSlider(this.value)">
+        <div class="scale-labels"><span class="scale-lbl">10</span><span class="scale-lbl">250</span><span class="scale-lbl">500</span><span class="scale-lbl">750</span><span class="scale-lbl">1000</span></div>
+        <div class="divider"></div>
+        <div class="sec" style="margin-bottom:4px">Sort By</div>
+        <div class="chip-group" id="sortGroup">
+          <div class="chip active" data-val="newest" onclick="pickChip('sortGroup',this)">Newest</div>
+          <div class="chip" data-val="rating" onclick="pickChip('sortGroup',this)">Rating</div>
+          <div class="chip" data-val="relevance" onclick="pickChip('sortGroup',this)">Relevance</div>
+        </div>
+        <div class="divider"></div>
+        <div class="sec" style="margin-bottom:4px">Maximum Rating Filter</div>
+        <div class="chip-group" id="ratingGroup">
+          <div class="chip active" data-val="0" onclick="pickChip('ratingGroup',this)">All</div>
+          <div class="star-chip" data-val="1" onclick="pickChip('ratingGroup',this)">1 Star</div>
+          <div class="star-chip" data-val="2" onclick="pickChip('ratingGroup',this)">2 Stars</div>
+          <div class="star-chip" data-val="3" onclick="pickChip('ratingGroup',this)">3 Stars</div>
+          <div class="star-chip" data-val="4" onclick="pickChip('ratingGroup',this)">4 Stars</div>
+          <div class="star-chip" data-val="5" onclick="pickChip('ratingGroup',this)">5 Stars</div>
+        </div>
+        <div class="divider"></div>
+        <div class="sec" style="margin-bottom:4px">Review Period Filter</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <div style="flex:1">
+            <label style="font-size:10px;color:var(--t3)">From</label>
+            <input type="date" id="dateFrom" style="width:100%;padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--surf2);color:var(--t2)">
+          </div>
+          <div style="flex:1">
+            <label style="font-size:10px;color:var(--t3)">To</label>
+            <input type="date" id="dateTo" style="width:100%;padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--surf2);color:var(--t2)">
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--t3);margin-top:4px">Kosongkan untuk semua periode</div>
+        <button class="btn btn-primary btn-full" id="btnScrape" onclick="doScrape()"><i class="ti ti-cloud-download"></i> Start Scraping</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-h"><span class="card-t"><i class="ti ti-cpu"></i> Batch Analysis</span><span class="badge b-gray">Step 2</span></div>
+      <div class="card-b">
+        <div class="sec" style="margin-bottom:2px">Reviews to Analyze (multiples of 10)</div>
+        <div class="scale-val" id="analyzeDisp">100</div>
+        <div class="scale-unit" id="pendingInfo">reviews to process</div>
+        <input type="range" id="analyzeSlider" min="10" max="500" step="10" value="100" oninput="onAnalyzeSlider(this.value)">
+        <div class="scale-labels"><span class="scale-lbl">10</span><span class="scale-lbl">130</span><span class="scale-lbl">250</span><span class="scale-lbl">380</span><span class="scale-lbl">500</span></div>
+        <div class="divider"></div>
+        <div style="background:var(--amber-bg);border:1px solid #fcd34d;border-radius:var(--r-sm);padding:10px 12px;font-size:11px;color:var(--amber);line-height:1.7">
+          ~1.2 seconds per review via local model<br>Estimated time: <b id="etaDisp">2 min</b>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:var(--t2);line-height:1.6">Pipeline: Normalization → IndoBERT Sentiment → L1–L3 Classification → LLM Escalation L4–L5</div>
+        <button class="btn btn-success btn-full" id="btnAnalyze" onclick="doAnalyze()"><i class="ti ti-cpu"></i> Start Analysis</button>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-b" style="padding:.875rem">
+      <div class="log-hdr">
+        <div style="display:flex;align-items:center"><span class="live-dot idle" id="liveDot"></span><span style="font-size:12px;font-weight:600" id="logTitle">Log Output</span></div>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-ghost btn-sm" onclick="clearLog()"><i class="ti ti-trash"></i> Clear</button>
+          <button class="btn btn-ghost btn-sm" onclick="scrollBot()"><i class="ti ti-arrow-down"></i> Bottom</button>
+        </div>
+      </div>
+      <div class="log-box" id="logBox"><div class="ln info">System ready. Configure parameters and click Start.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MANUAL ANALYSIS -->
+<div class="page" id="page-manual">
+  <div class="sec">Manual Analysis — Real-time</div>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-h"><span class="card-t">Review Input</span></div>
+      <div class="card-b">
+        <label>Customer review text</label>
+        <textarea id="manInput" placeholder="Type or paste a PLN Mobile review here..."></textarea>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin:8px 0">
+          <button class="btn btn-ghost btn-sm" onclick="setEx('Aplikasi error terus tidak bisa beli token sudah 3 hari')">Example 1</button>
+          <button class="btn btn-ghost btn-sm" onclick="setEx('Listrik mati 2 hari tidak ada pemberitahuan sama sekali')">Example 2</button>
+          <button class="btn btn-ghost btn-sm" onclick="setEx('Bagus aplikasinya mudah digunakan pembayaran cepat')">Example 3</button>
+          <button class="btn btn-ghost btn-sm" onclick="setEx('Tagihan bulan ini bengkak banget padahal pemakaian sama')">Example 4</button>
+        </div>
+        <div class="pipeline">
+          <div class="step" id="ms1">Normalization</div><div class="arr" id="ar1">→</div>
+          <div class="step" id="ms2">Sentiment</div><div class="arr" id="ar2">→</div>
+          <div class="step" id="ms3">Classification</div><div class="arr" id="ar3">→</div>
+          <div class="step" id="ms4">Escalation</div>
+        </div>
+        <button class="btn btn-primary btn-full" id="manBtn" onclick="runManual()"><i class="ti ti-player-play"></i> Run Analysis</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-h"><span class="card-t">Analysis Result</span></div>
+      <div class="card-b"><div id="manResult" style="min-height:140px;display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:13px">Result appears here after running analysis</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ANALYSIS RESULTS -->
+<div class="page" id="page-results">
+  <div class="sec">Analysis Results Database</div>
+  <div class="card">
+    <div class="card-h">
+      <span class="card-t">Filter & Browse</span>
+      <button class="btn btn-ghost btn-sm" onclick="loadResults()"><i class="ti ti-refresh"></i> Refresh</button>
+    </div>
+    <!-- CASCADE FILTER -->
+    <div style="padding:.75rem 1.25rem;border-bottom:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end">
+      <div>
+        <div class="filter-lbl">Sentiment</div>
+        <select id="fSent" onchange="loadResults()" style="width:auto;font-size:12px">
+          <option value="">All</option>
+          <option value="Positif">Positive</option>
+          <option value="Negatif">Negative</option>
+        </select>
+      </div>
+      <div>
+        <div class="filter-lbl">Layer 1</div>
+        <select id="fL1" onchange="onFilterL1Change()" style="width:auto;font-size:12px">
+          <option value="">All</option>
+          <option value="APLIKASI">APLIKASI</option>
+          <option value="LAYANAN">LAYANAN</option>
+          <option value="UMUM">UMUM</option>
+        </select>
+      </div>
+      <div>
+        <div class="filter-lbl">Layer 2</div>
+        <select id="fL2" onchange="onFilterL2Change()" style="width:150px;font-size:12px">
+          <option value="">All</option>
+          <option value="KETENAGALISTRIKAN">KETENAGALISTRIKAN</option>
+          <option value="BEYOND KWH">BEYOND KWH</option>
+          <option value="UMUM">UMUM</option>
+        </select>
+      </div>
+      <div>
+        <div class="filter-lbl">Rating</div>
+        <select id="fRating" onchange="loadResults()" style="width:auto;font-size:12px">
+          <option value="">All</option>
+          <option value="1">1 Star</option>
+          <option value="2">2 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="5">5 Stars</option>
+        </select>
+      </div>
+      <div>
+        <div class="filter-lbl">Rows</div>
+        <select id="fLimit" onchange="loadResults()" style="width:auto;font-size:12px">
+          <option value="30">30</option>
+          <option value="50" selected>50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="resetResultFilters()" style="margin-bottom:1px">
+        <i class="ti ti-x"></i> Reset
+      </button>
+    </div>
+    <div id="resultsTable"><div class="empty">Loading...</div></div>
+  </div>
+</div>
+
+<!-- RAW SCRAPED DATA -->
+<div class="page" id="page-rawdata">
+  <div class="sec">Raw Scraped Data</div>
+  <div class="card">
+    <div class="card-h">
+      <span class="card-t"><i class="ti ti-database"></i> Scraped Review Metadata</span>
+      <div style="display:flex;gap:6px;align-items:center">
+        <span class="badge b-blue" id="rawTotal">0 reviews</span>
+        <button class="btn btn-ghost btn-sm" onclick="loadRaw(1)"><i class="ti ti-refresh"></i> Refresh</button>
+      </div>
+    </div>
+    <div style="padding:.75rem 1.25rem;border-bottom:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <input type="text" id="rawSearch" placeholder="Search review or username..." style="width:220px;font-size:12px" oninput="debounceRaw()">
+      <select id="rawRating" onchange="loadRaw(1)" style="width:auto;font-size:12px">
+        <option value="">All Ratings</option>
+        <option value="1">1 Star</option><option value="2">2 Stars</option>
+        <option value="3">3 Stars</option><option value="4">4 Stars</option><option value="5">5 Stars</option>
+      </select>
+      <select id="rawAnalyzed" onchange="loadRaw(1)" style="width:auto;font-size:12px">
+        <option value="">All Statuses</option><option value="0">Not Analyzed</option><option value="1">Analyzed</option>
+      </select>
+      <select id="rawPerPage" onchange="loadRaw(1)" style="width:auto;font-size:12px">
+        <option value="25">25 / page</option><option value="50" selected>50 / page</option><option value="100">100 / page</option>
+      </select>
+    </div>
+    <div id="rawTableWrap"><div class="empty">Click Raw Scraped Data to load...</div></div>
+    <div style="padding:.75rem 1.25rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+      <div style="font-size:12px;color:var(--t2)" id="rawPageInfo">No data yet</div>
+      <div style="display:flex;gap:5px" id="rawPageBtns"></div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div id="rawModal" onclick="if(event.target===this)closeModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9000;align-items:center;justify-content:center;padding:1.5rem;overflow-y:auto">
+  <div style="background:var(--surface);border-radius:var(--r);max-width:640px;width:100%;max-height:82vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)">
+    <div style="padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--surface)">
+      <span style="font-weight:600;font-size:14px" id="modalTitle">Detail</span>
+      <button onclick="closeModal()" class="btn btn-ghost btn-sm"><i class="ti ti-x"></i> Close</button>
+    </div>
+    <div id="modalContent" style="padding:1.25rem"></div>
+  </div>
+</div>
+
+<!-- FLAG REASON MODAL -->
+<div id="flagModal" onclick="if(event.target===this)closeFlagPrompt()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9500;align-items:center;justify-content:center;padding:1.5rem">
+  <div style="background:var(--surface);border-radius:var(--r);max-width:440px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3)">
+    <div style="padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+      <span style="font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px"><i class="ti ti-flag" style="color:#dc2626"></i> Flag Misclassification</span>
+      <button onclick="closeFlagPrompt()" class="btn btn-ghost btn-sm"><i class="ti ti-x"></i></button>
+    </div>
+    <div style="padding:1.25rem">
+      <label style="font-size:12px;color:var(--t2)">Why do you think this classification is wrong?</label>
+      <textarea id="flagReasonInput" rows="4" placeholder="Example: Rating 5 but classified as Negative, should be Positive..." style="width:100%;margin-top:6px;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;resize:vertical"></textarea>
+       <div style="display:flex;gap:8px;margin-top:14px;justify-content:flex-end">
+        <button class="btn btn-ghost btn-sm" onclick="closeFlagPrompt()">Cancel</button>
+        <button class="btn btn-sm" style="background:#dc2626;color:#fff" onclick="submitFlag()"><i class="ti ti-flag-filled"></i> Save & Flag</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPORT -->
+<div class="page" id="page-export">
+  <div class="sec">Export & Download</div>
+  <div class="card">
+    <div class="card-h"><span class="card-t"><i class="ti ti-file-spreadsheet"></i> Export Analysis Results to Excel</span></div>
+    <div class="card-b">
+      <p style="font-size:12px;color:var(--t2);margin-bottom:16px;line-height:1.7">
+        Download all analysis results (sentiment + hierarchical classification L1–L5 + quality parameter)
+        as an <b>.xlsx</b> file compatible with Microsoft Excel and Google Sheets.
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+        <div>
+          <label>Filter by Sentiment (optional)</label>
+          <select id="expSent" style="font-size:12px">
+            <option value="">All Sentiments</option>
+            <option value="Negatif">Negative</option>
+            <option value="Positif">Positive</option>
+          </select>
+        </div>
+        <div>
+          <label>Filter by Layer 1 (optional)</label>
+          <select id="expL1" style="font-size:12px">
+            <option value="">All Categories</option>
+            <option value="APLIKASI">APLIKASI</option>
+            <option value="LAYANAN">LAYANAN</option>
+            <option value="UMUM">UMUM</option>
+          </select>
+        </div>
+      </div>
+      <div style="background:var(--sky-l);border:1px solid #b3d4f5;border-radius:var(--r-sm);padding:12px 14px;font-size:11px;color:var(--blue);margin-bottom:16px;line-height:1.7">
+        <b>Columns included:</b> Username · Review Text · Rating · Review Date · Sentiment · Confidence (%) · Layer 1 · Layer 2 · Layer 3 · Layer 4 · Layer 5 · Quality Parameter · Reason · Escalated · Analyzed At · <b>Flag Status</b> (menandakan hasil yang ditandai salah klasifikasi secara manual) · Flag Note
+      </div>
+      <button class="btn btn-success" onclick="doExport()" style="font-size:13px;padding:10px 24px">
+        <i class="ti ti-download"></i> Download Excel (.xlsx)
+      </button>
+      <div id="expStatus" style="margin-top:10px;font-size:12px;color:var(--t2)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="page" id="page-about">
+  <div class="sec">About the System</div>
+  <div class="card"><div class="card-b" style="line-height:1.8">
+    <h3 style="font-size:15px;margin-bottom:.5rem">SETRUM — PLN Mobile Review Analyzer v2.0</h3>
+    <p style="font-size:12px;color:var(--t2);margin-bottom:1rem">Hierarchical Multi-Agent NLP system for automated analysis of PLN Mobile customer reviews.</p>
+    <div class="divider"></div>
+    <div class="grid2" style="margin-top:1rem">
+      <div><div class="sec">Agent Pipeline</div><div style="font-size:12px;color:var(--t2)">
+        <div style="margin-bottom:5px"><i class="ti ti-git-branch"></i> <b>Orchestrator Agent</b>: pipeline coordination</div>
+        <div style="margin-bottom:5px"><i class="ti ti-text-wrap"></i> <b>Agent 1 — Normalization</b>: text preprocessing</div>
+        <div style="margin-bottom:5px"><i class="ti ti-mood-smile"></i> <b>Agent 2 — Sentiment</b>: IndoBERT gate (negative only)</div>
+        <div style="margin-bottom:5px"><i class="ti ti-tags"></i> <b>Agent 3 — Classifier</b>: L1–L3 fine-tuned IndoBERT</div>
+        <div><i class="ti ti-robot"></i> <b>Agent 4 — Escalation</b>: L4–L5 zero-shot BART-MNLI</div>
+      </div></div>
+      <div><div class="sec">Tech Stack</div><div style="font-size:12px;color:var(--t2)">
+        <div style="margin-bottom:5px"><i class="ti ti-brand-python"></i> Python 3.9+ + Flask</div>
+        <div style="margin-bottom:5px"><i class="ti ti-database"></i> SQLite database</div>
+        <div style="margin-bottom:5px"><i class="ti ti-api"></i> IndoBERT (local) + BART-MNLI zero-shot</div>
+        <div style="margin-bottom:5px"><i class="ti ti-brand-google-play"></i> google-play-scraper</div>
+        <div><i class="ti ti-chart-bar"></i> Chart.js + vanilla JS dashboard</div>
+      </div></div>
+    </div>
+  </div></div>
+</div>
+
+</div></div>
+
+<script>
+// ── UTILITIES ─────────────────────────────────────────────────────────────────
+async function api(p,o={}){return(await fetch(p,o)).json();}
+function toast(m){const e=document.getElementById('toast');e.textContent=m;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),3000);}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function pickChip(gid,el){document.querySelectorAll('#'+gid+' .chip,#'+gid+' .star-chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');}
+function chipVal(gid){const e=document.querySelector('#'+gid+' .active');return e?e.dataset.val:'';}
+function onScrapeSlider(v){v=Math.round(v/10)*10;document.getElementById('scrapeDisp').textContent=v;}
+function onAnalyzeSlider(v){v=Math.round(v/10)*10;document.getElementById('analyzeDisp').textContent=v;const mins=Math.ceil(v*1.2/60);document.getElementById('etaDisp').textContent=mins<1?'< 1 min':mins+' min';}
+function sentBadge(s){const m={Positif:'b-pos',Negatif:'b-neg',Netral:'b-neu'};return`<span class="badge ${m[s]||'b-gray'}">${s==='Positif'?'Positive':s==='Negatif'?'Negative':s||'—'}</span>`;}
+function setEx(t){document.getElementById('manInput').value=t;}
+function setStep(id,s){document.getElementById(id).className='step'+(s?' '+s:'');}
+function gotoPage(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');el.classList.add('active');
+  if(id==='results'){loadResults();}
+  if(id==='dashboard')loadStats();
+  if(id==='rawdata')loadRaw(1);
+}
+async function checkHealth(){try{const r=await api('/api/health');document.getElementById('hDot').className='hdot ok';document.getElementById('hLabel').textContent=r.hf_token_configured?'HF Token OK':'Server Online';}catch{document.getElementById('hLabel').textContent='Server offline';}}
+
+// ── SPARKLINE & COUNT-UP ──────────────────────────────────────────────────────
+function countUp(el,to,dur=900,decimals=0){if(!el)return;const from=parseFloat((el.textContent||'0').replace(/[^\d.-]/g,''))||0;to=parseFloat(to)||0;if(from===to){el.textContent=decimals?to.toFixed(decimals):to.toLocaleString();return;}const t0=performance.now();function frame(t){const p=Math.min((t-t0)/dur,1);const e=1-Math.pow(1-p,3);const v=from+(to-from)*e;el.textContent=decimals?v.toFixed(decimals):Math.round(v).toLocaleString();if(p<1)requestAnimationFrame(frame);}requestAnimationFrame(frame);}
+const _spkHist={Total:[],Analyzed:[],Rating:[],Esc:[]};
+function pushHist(k,v){const a=_spkHist[k];a.push(v);if(a.length>12)a.shift();}
+function drawSpark(id,data,color){const svg=document.getElementById(id);if(!svg)return;if(data.length<2){svg.innerHTML='';return;}const w=64,h=26,pad=2;const mn=Math.min(...data),mx=Math.max(...data),rng=(mx-mn)||1;const pts=data.map((v,i)=>{const x=pad+(i/(data.length-1))*(w-2*pad);const y=h-pad-((v-mn)/rng)*(h-2*pad);return[x,y];});const line=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');const area=line+` L${w-pad} ${h-pad} L${pad} ${h-pad} Z`;svg.innerHTML=`<path d="${area}" fill="${color}" opacity="0.12"/><path d="${line}" fill="none" stroke="${color}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${pts[pts.length-1][0].toFixed(1)}" cy="${pts[pts.length-1][1].toFixed(1)}" r="2" fill="${color}"/>`;}
+
+// ── DASHBOARD CHARTS ──────────────────────────────────────────────────────────
+let sentChart,catChart,layer2Chart,layer3Chart;
+let _layerData={layer1:[],layer2:{},layer3:{}};
+
+async function loadStats(){
+  try{
+    const r=await api('/api/stats');if(!r.success)return;const d=r.data;
+    countUp(document.getElementById('sTotal'),d.total_reviews||0);
+    countUp(document.getElementById('sAnalyzed'),d.total_analyzed||0);
+    const pct=d.total_reviews>0?((d.total_analyzed/d.total_reviews)*100).toFixed(1):0;
+    document.getElementById('sAnalyzedPct').textContent=pct+'% analyzed';
+    countUp(document.getElementById('sRating'),d.avg_rating||0,900,1);
+    countUp(document.getElementById('sEsc'),d.escalated_count||0);
+    pushHist('Total',d.total_reviews||0);pushHist('Analyzed',d.total_analyzed||0);pushHist('Rating',d.avg_rating||0);pushHist('Esc',d.escalated_count||0);
+    drawSpark('spkTotal',_spkHist.Total,'#0073e6');drawSpark('spkAnalyzed',_spkHist.Analyzed,'#1a7f3c');drawSpark('spkRating',_spkHist.Rating,'#d97706');drawSpark('spkEsc',_spkHist.Esc,'#c5221f');
+    const tot=Object.values(d.sentiment_distribution||{}).reduce((a,b)=>a+b,0);
+    document.getElementById('sentTotal').textContent=tot.toLocaleString()+' analyzed';
+    renderSentChart(d.sentiment_distribution||{});
+    try{const ls=await api('/api/layer-stats');if(ls.success)renderCatChart(ls);else renderCatChart({layer1:[],layer2:{}});}catch{renderCatChart({layer1:[],layer2:{}});}
+  }catch(e){console.error(e);}
+}
+
+function renderSentChart(data){
+  const ctx=document.getElementById('sentChart').getContext('2d');
+  if(sentChart)sentChart.destroy();
+  const labelMap={Positif:'Positive',Negatif:'Negative',Netral:'Neutral'};
+  const labels=Object.keys(data).map(l=>labelMap[l]||l);
+  const values=Object.values(data);
+  const colors=Object.keys(data).map(l=>l==='Positif'?'#1a7f3c':l==='Negatif'?'#c5221f':'#d97706');
+  sentChart=new Chart(ctx,{type:'doughnut',data:{labels,datasets:[{data:values,backgroundColor:colors,borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:10}}}}});
+}
+
+function renderCatChart(data){
+  _layerData=data;
+  const ctx=document.getElementById('catChart').getContext('2d');
+  if(catChart)catChart.destroy();
+  const COLORS={'Aplikasi':'#003d82','Layanan':'#0066cc','Umum':'#64b5f6','APLIKASI':'#003d82','LAYANAN':'#0066cc','UMUM':'#64b5f6'};
+  const labels=data.layer1.map(d=>typeof d==='string'?d:(d.label||String(d)));
+  const counts=data.layer1.map(d=>typeof d==='string'?1:(d.count||0));
+  catChart=new Chart(ctx,{type:'bar',data:{labels,datasets:[{data:counts,backgroundColor:labels.map(l=>COLORS[l]||'#1565c0'),borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',onClick:(e,els)=>{if(!els.length)return;showLayer2(labels[els[0].index]);},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw} reviews`}}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{font:{size:11},precision:0}},y:{grid:{display:false},ticks:{font:{size:13,family:'Inter',weight:'600'}}}}}});
+}
+
+function showLayer2(l1){
+  const l2data=(_layerData.layer2||{})[l1]||[];
+  if(!l2data.length){toast('No Layer 2 data for '+l1);return;}
+  resetLayer3();
+  document.getElementById('layer2Card').style.display='';
+  document.getElementById('layer2Title').textContent=`Layer 2 — ${l1}`;
+  const COLORS={'Ketenagalistrikan':'#003d82','KETENAGALISTRIKAN':'#003d82','Beyond KWH':'#00897b','BEYOND KWH':'#00897b','Umum':'#90caf9'};
+  const ctx=document.getElementById('layer2Chart').getContext('2d');
+  if(layer2Chart)layer2Chart.destroy();
+  const labels=l2data.map(d=>d.label==='—'?'General':d.label);
+  layer2Chart=new Chart(ctx,{type:'bar',data:{labels,datasets:[{data:l2data.map(d=>d.count),backgroundColor:l2data.map(d=>COLORS[d.label]||'#1565c0'),borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',onClick:(e,els)=>{if(!els.length)return;showLayer3(l1,labels[els[0].index]);},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw} reviews`}}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{font:{size:11},precision:0}},y:{grid:{display:false},ticks:{font:{size:13,family:'Inter',weight:'600'}}}}}});
+  document.getElementById('layer2Card').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function showLayer3(l1,l2){
+  const key=`${l1}||${l2}`;
+  const l3data=(_layerData.layer3||{})[key]||[];
+  if(!l3data.length){toast('No Layer 3 data for '+l2);return;}
+  document.getElementById('layer3Card').style.display='';
+  document.getElementById('layer3Title').textContent=`Layer 3 — ${l2}`;
+  const COLORS=['#003d82','#0055a5','#0066cc','#1976d2','#1e88e5','#2196f3','#42a5f5','#64b5f6','#90caf9','#bbdefb'];
+  const ctx=document.getElementById('layer3Chart').getContext('2d');
+  if(layer3Chart)layer3Chart.destroy();
+  layer3Chart=new Chart(ctx,{type:'bar',data:{labels:l3data.map(d=>d.label),datasets:[{data:l3data.map(d=>d.count),backgroundColor:l3data.map((_,i)=>COLORS[i%COLORS.length]),borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw} reviews`}}},scales:{x:{grid:{color:'#f0f0f0'},ticks:{font:{size:11},precision:0}},y:{grid:{display:false},ticks:{font:{size:11,family:'Inter'}}}}}});
+  document.getElementById('layer3Card').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function resetLayer3(){document.getElementById('layer3Card').style.display='none';if(layer3Chart){layer3Chart.destroy();layer3Chart=null;}}
+function resetLayer2(){document.getElementById('layer2Card').style.display='none';if(layer2Chart){layer2Chart.destroy();layer2Chart=null;}resetLayer3();}
+
+// ── MINI TABLE ────────────────────────────────────────────────────────────────
+async function loadMini(){
+  const cont=document.getElementById('miniTable');if(!cont)return;
+  try{
+    const r=await api('/api/reviews?limit=5');
+    if(!r.success||!r.data||!r.data.length){cont.innerHTML='<div class="empty" style="font-size:12px">No analysis data yet. Run Engine Control first.</div>';return;}
+    cont.innerHTML=`<table style="width:100%;font-size:12px;border-collapse:collapse"><thead><tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:6px 8px;font-weight:600;color:var(--t3);font-size:11px">Rating</th><th style="text-align:left;padding:6px 8px;font-weight:600;color:var(--t3);font-size:11px">Review</th><th style="text-align:left;padding:6px 8px;font-weight:600;color:var(--t3);font-size:11px">Sentiment</th><th style="text-align:left;padding:6px 8px;font-weight:600;color:var(--t3);font-size:11px">Layer 1</th></tr></thead><tbody>${r.data.map(d=>`<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><b>${d.rating||0}</b><span style="color:var(--t3);font-size:10px">/5</span></td><td style="padding:6px 8px;max-width:240px"><div style="overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">${esc(d.review_text||'')}</div><div style="font-size:10px;color:var(--t3)">${esc(d.username||'Anonymous')}</div></td><td style="padding:6px 8px">${sentBadge(d.sentiment)}</td><td style="padding:6px 8px"><span class="badge b-blue" style="font-size:10px">${esc(d.layer1||(d.category||'').split(' — ')[0]||'')}</span></td></tr>`).join('')}</tbody></table>`;
+  }catch(e){cont.innerHTML=`<div class="empty" style="font-size:12px">Error: ${e.message}</div>`;}
+}
+
+// ── CASCADE FILTER (L1 → L2 → L3) ────────────────────────────────────────────
+const FILTER_L3_MAP = {
+  'APLIKASI||KETENAGALISTRIKAN': ['Akun PLN Mobile','Catat Meter','E-Billing','PLN Non Taglis (PB/PD/PS/P2TL)','Pengaduan','Sambung Baru LSP Plus','Simulasi Biaya','Token & Pembayaran','Ubah Daya, Migrasi, dan Penyambungan Sementara'],
+  'APLIKASI||BEYOND KWH': ['ELECTRIC VEHICLE','ICONNET','ICONPLAY','LISTRIQU','MARKETPLACE','PLTS ATAP','Promosi, Informasi & Event','Pulsa & Tagihan','Saldo PLN Mobile'],
+  'LAYANAN||KETENAGALISTRIKAN': ['Akun PLN Mobile','Catat Meter','Pengaduan','Sambung Baru LSP Plus','Subsidi Listrik'],
+  'LAYANAN||BEYOND KWH': ['ELECTRIC VEHICLE','ICONNET','ICONPLAY','ListriQu','MARKETPLACE','PLTS Atap','Promosi, Informasi & Event'],
+  'UMUM||BEYOND KWH': ['Promosi, Informasi & Event'],
+  'UMUM||UMUM': [
+    'Citra / Branding Negatif Perusahaan',
+    'Tidak Deskriptif',
+    'Salah Mengartikan Bintang 1',
+    'Saran UI/UX Tanpa Keterangan Fitur/Menu',
+    'Keluhan Teknis secara Aplikasi',
+  ],
+};
+const FILTER_ALL_L3 = [...new Set(Object.values(FILTER_L3_MAP).flat())].sort();
+
+function updateFilterL2(){
+  const l1=document.getElementById('fL1').value;
+  const sel=document.getElementById('fL2');
+  const cur=sel.value;
+  const available=l1
+    ? [...new Set(Object.keys(FILTER_L3_MAP).filter(k=>k.startsWith(l1+'||')).map(k=>k.split('||')[1]))]
+    : ['KETENAGALISTRIKAN','BEYOND KWH','UMUM'];
+  sel.innerHTML='<option value="">All</option>'+available.sort().map(o=>`<option value="${o}"${cur===o?' selected':''}>${o}</option>`).join('');
+  if(cur&&!available.includes(cur))sel.value='';
+}
+
+function onFilterL1Change(){updateFilterL2();loadResults();}
+function onFilterL2Change(){loadResults();}
+
+function resetResultFilters(){
+  ['fSent','fL1','fL2','fRating'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fLimit').value='50';
+  updateFilterL2();loadResults();
+}
+
+// ── RESULTS TABLE ─────────────────────────────────────────────────────────────
+async function loadResults(){
+  const cont=document.getElementById('resultsTable');
+  cont.innerHTML='<div class="empty"><div class="spin"></div></div>';
+  try{
+    const s=document.getElementById('fSent').value;
+    const l1=document.getElementById('fL1').value;
+    const l2=document.getElementById('fL2').value;
+    const rating=document.getElementById('fRating').value;
+    const limit=document.getElementById('fLimit').value;
+    let url=`/api/reviews?limit=${limit}`;
+    if(s)url+=`&sentiment=${encodeURIComponent(s)}`;
+    if(l1)url+=`&layer1=${encodeURIComponent(l1)}`;
+    if(l2)url+=`&layer2=${encodeURIComponent(l2)}`;
+    if(rating)url+=`&rating=${encodeURIComponent(rating)}`;
+    const r=await api(url);
+    if(!r.success||!r.data||!r.data.length){cont.innerHTML='<div class="empty">No results found for the selected filters.</div>';return;}
+    window._resultsData=r.data;
+    const rows=r.data.map((d,i)=>{
+      const rl1=d.layer1||(d.category||'').split(' — ')[0]||'—';
+      const rl2=d.layer2||(d.category||'').split(' — ')[1]||'—';
+      const isFlagged=!!d.flagged;
+      return `<tr style="cursor:pointer" onclick="showResultDetail(${i})">
+        <td><b style="font-size:13px">${d.rating||0}</b><span style="font-size:10px;color:var(--t3)">/5</span></td>
+        <td style="max-width:260px"><div style="font-size:12px;line-height:1.6">${esc(d.review_text)}</div><div style="font-size:10px;color:var(--t3);margin-top:2px">${esc(d.username||'Anonymous')}</div></td>
+        <td>${sentBadge(d.sentiment)}<div style="font-size:10px;color:var(--t3);margin-top:2px">${((d.sentiment_confidence||0)*100).toFixed(0)}%</div></td>
+        <td><span class="badge b-blue" style="font-size:10px">${esc(rl1)}</span></td>
+        <td><span style="font-size:11px;color:var(--t2)">${esc(rl2)}</span></td>
+        <td><span style="font-size:11px;color:var(--t2)">${esc(d.layer3||d.subcategory||'')}</span></td>
+        <td><span style="font-size:11px;color:var(--t2)">${esc(d.layer4||'')}</span></td>
+        <td><span style="font-size:11px;color:var(--t2)">${esc(d.layer5||'')}</span></td>
+        <td><span style="font-size:10px;color:var(--purple);font-weight:600">${esc(d.quality_param||'')}</span></td>
+        <td style="max-width:160px"><div style="font-size:11px;color:var(--t2)">${esc(d.reason||'')}</div>${d.escalated?'<span class="badge b-esc" style="margin-top:3px;display:inline-block;font-size:10px">ESC</span>':''}</td>
+        <td><div class="mono" style="font-size:10px;color:var(--t3)">${(d.analyzed_at||'').substring(0,10)}</div></td>
+        <td onclick="event.stopPropagation()">
+          <button onclick="toggleFlag(${i})" title="${isFlagged?'Click to remove flag':'Flag: this classification is WRONG'}"
+            style="display:flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:4px 8px;border-radius:6px;cursor:pointer;
+            border:1px solid ${isFlagged?'#dc2626':'var(--border)'};
+            background:${isFlagged?'#dc2626':'transparent'};
+            color:${isFlagged?'#fff':'var(--t3)'}">
+            <i class="ti ${isFlagged?'ti-flag-filled':'ti-flag'}"></i>${isFlagged?'Flagged':''}
+          </button>
+        </td>
+      </tr>`;
+    }).join('');
+    cont.innerHTML=`<div class="tbl-wrap"><table><thead><tr><th>Rating</th><th>Review</th><th>Sentiment</th><th>Layer 1</th><th>Layer 2</th><th>Layer 3</th><th>Layer 4</th><th>Layer 5</th><th>Parameter</th><th>Reason</th><th>Date</th><th>Flag</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  }catch(e){cont.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
+}
+
+function toggleFlag(i){
+  const d=window._resultsData[i];
+  if(!d||!d.result_id){toast('Result ID not found');return;}
+  if(d.flagged){
+    // already flagged -> click again = unflag, no reason needed
+    unflagResult(i);
+  } else {
+    // not flagged yet -> ask for a reason first via popup
+    openFlagPrompt(i);
+  }
+}
+
+let _flagPendingIdx=null;
+function openFlagPrompt(i){
+  _flagPendingIdx=i;
+  document.getElementById('flagReasonInput').value='';
+  document.getElementById('flagModal').style.display='flex';
+  document.body.style.overflow='hidden';
+  setTimeout(()=>document.getElementById('flagReasonInput').focus(),50);
+}
+function closeFlagPrompt(){
+  document.getElementById('flagModal').style.display='none';
+  document.body.style.overflow='';
+  _flagPendingIdx=null;
+}
+async function submitFlag(){
+  if(_flagPendingIdx===null)return;
+  const i=_flagPendingIdx;
+  const d=window._resultsData[i];
+  const note=document.getElementById('flagReasonInput').value.trim();
+  try{
+    const r=await api(`/api/flag/${d.result_id}`,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({flagged:true,note})});
+    if(!r.success){toast('Failed to update flag: '+r.error);return;}
+    d.flagged=1;d.flag_note=note;
+    closeFlagPrompt();
+    loadResults();
+    toast('Marked as misclassified');
+  }catch(e){toast('Error: '+e.message);}
+}
+async function unflagResult(i){
+  const d=window._resultsData[i];
+  try{
+    const r=await api(`/api/flag/${d.result_id}`,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({flagged:false})});
+    if(!r.success){toast('Failed to update flag: '+r.error);return;}
+    d.flagged=0;d.flag_note='';
+    loadResults();
+    toast('Flag removed');
+  }catch(e){toast('Error: '+e.message);}
+}
+
+function showResultDetail(idx){
+  const d=(window._resultsData||[])[idx];if(!d){toast('Data not found');return;}
+  const catParts=(d.category||'').split(' — ');
+  document.getElementById('modalTitle').textContent='Review Analysis Detail';
+  document.getElementById('modalContent').innerHTML=`
+    <div style="background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;margin-bottom:10px">
+      <div style="font-size:10px;color:var(--t3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;font-weight:700">Original Review Text</div>
+      <div style="font-size:13px;line-height:1.7;white-space:pre-wrap">${esc(d.review_text||'')}</div>
+      <div style="margin-top:8px;display:flex;gap:12px;font-size:11px;color:var(--t3)"><span>${esc(d.username||'Anonymous')}</span><span>Rating: ${d.rating||0}/5</span><span>${(d.analyzed_at||'').substring(0,10)}</span></div>
+    </div>
+    ${d.normalized_text && d.normalized_text !== d.review_text ? `
+    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:var(--r-sm);padding:14px;margin-bottom:14px">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+        <span style="font-size:10px;color:#15803d;font-weight:700;text-transform:uppercase;letter-spacing:.5px">✦ Smart Normalization Result</span>
+        <span style="font-size:10px;background:#dcfce7;color:#15803d;padding:2px 8px;border-radius:20px;font-weight:600">Processed</span>
+      </div>
+      <div style="font-size:13px;line-height:1.7;white-space:pre-wrap;color:var(--text)">${esc(d.normalized_text)}</div>
+      <div style="margin-top:8px;font-size:10px;color:#15803d;font-style:italic">Teks telah dinormalisasi: cleaning, slang correction, punctuation fix</div>
+    </div>` : `
+    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:var(--r-sm);padding:10px;margin-bottom:14px;display:flex;align-items:center;gap:8px">
+      <span style="font-size:10px;color:#15803d;font-weight:700;text-transform:uppercase;letter-spacing:.5px">✦ Smart Normalization</span>
+      <span style="font-size:11px;color:#15803d">Teks sudah bersih — tidak ada perubahan signifikan</span>
+    </div>`}
+    <div style="font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">Hierarchical Classification — PLN Mobile</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px">
+      <div style="background:var(--sky-l);border:1px solid #b3d4f5;border-radius:var(--r-sm);padding:9px 12px;display:flex;align-items:center;gap:12px"><span style="font-size:10px;color:var(--sky);font-weight:700;min-width:90px">LAYER 1</span><span style="font-size:13px;font-weight:700;color:var(--blue)">${esc(d.layer1||catParts[0]||'')}</span></div>
+      <div style="background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);padding:9px 12px;display:flex;align-items:center;gap:12px"><span style="font-size:10px;color:var(--t3);font-weight:700;min-width:90px">LAYER 2</span><span style="font-size:13px;font-weight:600">${esc(d.layer2||catParts[1]||'—')}</span></div>
+      <div style="background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);padding:9px 12px;display:flex;align-items:center;gap:12px"><span style="font-size:10px;color:var(--t3);font-weight:700;min-width:90px">LAYER 3</span><span style="font-size:13px;font-weight:600">${esc(d.layer3||d.subcategory||'—')}</span></div>
+      ${d.layer4?`<div style="background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);padding:9px 12px;display:flex;align-items:center;gap:12px"><span style="font-size:10px;color:var(--t3);font-weight:700;min-width:90px">LAYER 4</span><span style="font-size:13px;font-weight:600">${esc(d.layer4)}</span></div>`:''}
+      ${d.layer5?`<div style="background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);padding:9px 12px;display:flex;align-items:center;gap:12px"><span style="font-size:10px;color:var(--t3);font-weight:700;min-width:90px">LAYER 5</span><span style="font-size:13px;font-weight:600">${esc(d.layer5)}</span></div>`:''}
+      <div style="background:var(--purple-bg);border:1px solid #c4b5fd;border-radius:var(--r-sm);padding:9px 12px;display:flex;align-items:center;gap:12px"><span style="font-size:10px;color:var(--purple);font-weight:700;min-width:90px">PARAMETER</span><span style="font-size:13px;font-weight:700;color:var(--purple)">${esc(d.quality_param||'—')}</span></div>
+    </div>
+    <div style="font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Sentiment Analysis</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+      <div style="background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px"><div style="font-size:10px;color:var(--t3);font-weight:700;margin-bottom:5px">Sentiment</div>${sentBadge(d.sentiment)}</div>
+      <div style="background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px"><div style="font-size:10px;color:var(--t3);font-weight:700;margin-bottom:5px">Confidence</div><div style="font-size:13px;font-weight:700">${((d.sentiment_confidence||0)*100).toFixed(0)}%</div></div>
+    </div>
+    <div style="background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px;margin-bottom:10px">
+      <div style="font-size:10px;color:var(--t3);font-weight:700;margin-bottom:6px">Classification Confidence</div>
+      <div style="height:6px;background:var(--border);border-radius:3px"><div style="height:100%;border-radius:3px;background:${(d.classification_confidence||0)>=.8?'var(--green)':(d.classification_confidence||0)>=.7?'#d97706':'var(--red)'};width:${((d.classification_confidence||0)*100).toFixed(0)}%"></div></div>
+      <div style="font-size:11px;color:var(--t2);margin-top:5px;display:flex;justify-content:space-between"><span style="font-weight:600">${((d.classification_confidence||0)*100).toFixed(0)}%</span><span>${d.escalated?'<span style="color:var(--purple)">via LLM Escalation</span>':'Completed via IndoBERT + Classifier'}</span></div>
+    </div>
+    <div style="background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px">
+      <div style="font-size:10px;color:var(--t3);font-weight:700;margin-bottom:5px">Classification Reason</div>
+      <div style="font-size:12px;color:var(--t2);line-height:1.6">${esc(d.reason||'')}</div>
+    </div>
+    ${d.flagged?`
+    <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:var(--r-sm);padding:12px;margin-top:10px">
+      <div style="font-size:10px;color:#dc2626;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;display:flex;align-items:center;gap:5px"><i class="ti ti-flag-filled"></i> Flagged as Misclassified (Manual Report)</div>
+      <div style="font-size:12px;color:var(--t2);line-height:1.6">${esc(d.flag_note||'No reason provided.')}</div>
+    </div>`:''}`;
+  document.getElementById('rawModal').style.display='flex';document.body.style.overflow='hidden';
+}
+
+// ── RAW DATA ──────────────────────────────────────────────────────────────────
+let rawCurrentPage=1,rawDebounceTimer=null;
+function debounceRaw(){clearTimeout(rawDebounceTimer);rawDebounceTimer=setTimeout(()=>loadRaw(1),500);}
+
+async function loadRaw(page){
+  rawCurrentPage=page;
+  const wrap=document.getElementById('rawTableWrap');
+  wrap.innerHTML='<div class="empty"><div class="spin"></div></div>';
+  try{
+    const search=encodeURIComponent(document.getElementById('rawSearch').value);
+    const rating=document.getElementById('rawRating').value;
+    const analyzed=document.getElementById('rawAnalyzed').value;
+    const perPage=document.getElementById('rawPerPage').value;
+    let url=`/api/raw-reviews?page=${page}&per_page=${perPage}`;
+    if(search)url+=`&search=${search}`;if(rating)url+=`&rating=${rating}`;
+    if(analyzed!=='')url+=`&analyzed=${analyzed}`;
+    const r=await api(url);
+    if(!r.success){wrap.innerHTML=`<div class="empty">Error: ${esc(r.error)}</div>`;return;}
+    document.getElementById('rawTotal').textContent=r.total.toLocaleString()+' reviews';
+    document.getElementById('rawPageInfo').textContent=`Page ${r.page} of ${r.total_pages} (${r.total.toLocaleString()} total)`;
+    if(!r.data.length){wrap.innerHTML='<div class="empty">No data found</div>';renderRawPagination(r);return;}
+    const rows=r.data.map(d=>`<tr onclick="showDetail(this)" data-review='${JSON.stringify(d).replace(/'/g,"&#39;")}' style="cursor:pointer;transition:background .15s">
+      <td><div style="font-size:12px;font-weight:600">${esc(d.tanggal)}</div></td>
+      <td><div class="mono" style="font-size:11px;color:var(--t2)">${esc(d.jam||'')}</div></td>
+      <td><span style="font-weight:600">${d.rating||0}</span><span style="color:var(--t3);font-size:10px">/5</span></td>
+      <td><div style="font-size:12px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(d.username||'Anonymous')}</div></td>
+      <td><div style="font-size:12px;line-height:1.6">${esc(d.review_text)}</div></td>
+      <td><span class="badge ${d.analyzed?'b-pos':'b-gray'}" style="font-size:10px">${d.analyzed?'Yes':'No'}</span></td>
+      <td><div class="mono" style="font-size:10px;color:var(--t3)">${esc(d.app_version||'')}</div></td>
+    </tr>`).join('');
+    wrap.innerHTML=`<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>Time</th><th>Rating</th><th>Username</th><th>Review Text</th><th>Analyzed</th><th>App Version</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    renderRawPagination(r);
+  }catch(e){wrap.innerHTML=`<div class="empty">Error: ${e.message}</div>`;}
+}
+
+function renderRawPagination(r){
+  const cont=document.getElementById('rawPageBtns');
+  if(r.total_pages<=1){cont.innerHTML='';return;}
+  const pages=[],cur=r.page,tot=r.total_pages;
+  if(cur>2)pages.push(1);if(cur>3)pages.push('...');
+  for(let i=Math.max(1,cur-1);i<=Math.min(tot,cur+1);i++)pages.push(i);
+  if(cur<tot-2)pages.push('...');if(cur<tot-1)pages.push(tot);
+  cont.innerHTML=pages.map(p=>p==='...'?`<span style="padding:4px 6px;font-size:12px;color:var(--t3)">…</span>`:`<button class="btn btn-ghost btn-sm ${p===cur?'btn-primary':''}" style="${p===cur?'background:var(--blue);color:#fff;border-color:var(--blue)':''}" onclick="loadRaw(${p})">${p}</button>`).join('');
+}
+
+function showDetail(el){
+  let d;try{d=JSON.parse(el.getAttribute('data-review'));}catch{toast('Failed to open detail');return;}
+  document.getElementById('modalTitle').textContent=`Review — ${d.tanggal||''} ${d.jam||''}`;
+  document.getElementById('modalContent').innerHTML=`
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+      <div class="res-item"><div class="res-key">Rating</div><div class="res-val">${d.rating||0}<span style="color:var(--t3);font-size:10px">/5</span></div></div>
+      <div class="res-item"><div class="res-key">Date</div><div class="res-val">${esc(d.tanggal||'')}</div></div>
+      <div class="res-item"><div class="res-key">Time</div><div class="res-val mono">${esc(d.jam||'')}</div></div>
+      <div class="res-item"><div class="res-key">Username</div><div class="res-val">${esc(d.username||'Anonymous')}</div></div>
+      <div class="res-item"><div class="res-key">App Version</div><div class="res-val mono" style="font-size:12px">${esc(d.app_version||'—')}</div></div>
+      <div class="res-item"><div class="res-key">Analysis Status</div><div class="res-val">${d.analyzed?'✅ Analyzed':'⏳ Pending'}</div></div>
+    </div>
+    <div style="background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px">
+      <div class="res-key" style="margin-bottom:8px">Full Review Text</div>
+      <div style="font-size:13px;line-height:1.7;white-space:pre-wrap">${esc(d.review_text||'')}</div>
+    </div>`;
+  document.getElementById('rawModal').style.display='flex';document.body.style.overflow='hidden';
+}
+
+function closeModal(){document.getElementById('rawModal').style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeFlagPrompt();}});
+
+// ── ENGINE CONTROL ────────────────────────────────────────────────────────────
+function addLog(msg){const box=document.getElementById('logBox');if(!box)return;const div=document.createElement('div');const cls=msg.includes('done')||msg.includes('berhasil')||msg.includes('Selesai')?'ok':msg.includes('Error')||msg.includes('error')||msg.includes('GAGAL')?'err':msg.includes('Start')||msg.includes('Processing')||msg.includes('Analyzing')?'info':msg.includes('ESK')||msg.includes('Escalat')?'warn':'';div.className='ln'+(cls?' '+cls:'');div.textContent=msg;box.appendChild(div);if(box.children.length>500)box.removeChild(box.children[0]);scrollBot();}
+function clearLog(){const b=document.getElementById('logBox');if(b)b.innerHTML='';}
+function scrollBot(){const b=document.getElementById('logBox');if(b)b.scrollTop=b.scrollHeight;}
+function setBtns(r){const s=document.getElementById('btnScrape'),a=document.getElementById('btnAnalyze');if(s)s.disabled=r;if(a)a.disabled=r;}
+let loggedLines=0;
+function syncLogs(logs){if(!logs)return;if(logs.length>loggedLines){logs.slice(loggedLines).forEach(addLog);loggedLines=logs.length;}}
+function updateJobUI(r){const bar=document.getElementById('jobBar');if(!bar)return;if(r.running){bar.className='job-bar on';const msg=document.getElementById('jobMsg');if(msg)msg.textContent=r.type==='scrape'?`Scraping... (${r.progress}/${r.total})`:`Analyzing... (${r.progress}/${r.total})`;const fill=document.getElementById('progFill');if(fill)fill.style.width=r.pct+'%';document.getElementById('progLbl').textContent=r.progress+'/'+r.total;document.getElementById('progPct').textContent=r.pct+'%';document.getElementById('jobPct').textContent=r.pct+'%';const dot=document.getElementById('liveDot');if(dot)dot.className='live-dot';const lt=document.getElementById('logTitle');if(lt)lt.textContent='Live Log';}else if(r.done){bar.className='job-bar done';const msg=document.getElementById('jobMsg');if(msg)msg.textContent='Completed';const dot=document.getElementById('liveDot');if(dot)dot.className='live-dot idle';}else{bar.className='job-bar';}syncLogs(r.recent_logs);}
+let jobPoll=null;
+function startPoll(){if(jobPoll)clearInterval(jobPoll);loggedLines=0;jobPoll=setInterval(async()=>{try{const r=await api('/api/job/status');updateJobUI(r);if(r.done||!r.running){clearInterval(jobPoll);jobPoll=null;setBtns(false);loadStats();checkPending();if(r.done)toast(r.error?'Error: '+r.error:'Job completed successfully');setTimeout(()=>{const b=document.getElementById('jobBar');if(b)b.className='job-bar';},5000);}}catch(e){}},1200);}
+async function checkPending(){try{const r=await api('/api/queue');const el=document.getElementById('pendingInfo');if(r.success&&el)el.textContent=r.pending_count>0?`${r.pending_count} reviews pending`:'0 reviews pending';}catch(e){}}
+async function doScrape(){const count=parseInt(document.getElementById('scrapeSlider').value)||200;const sort=chipVal('sortGroup')||'newest';const rating=chipVal('ratingGroup')||'0';const dateFrom=document.getElementById('dateFrom').value||null;const dateTo=document.getElementById('dateTo').value||null;clearLog();loggedLines=0;const periodTxt=(dateFrom||dateTo)?`${dateFrom||'...'} s/d ${dateTo||'...'}`:'semua periode';addLog(`Starting scrape: ${count} reviews | Sort: ${sort} | Max rating: ${rating==='0'?'all':rating+'★-'} | Periode: ${periodTxt}`);setBtns(true);try{const r=await api('/api/scrape',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({count,sort,rating:parseInt(rating),date_from:dateFrom,date_to:dateTo})});if(!r.success){toast('Error: '+r.error);setBtns(false);return;}startPoll();}catch(e){toast('Failed: '+e.message);setBtns(false);}}
+async function doAnalyze(){const limit=parseInt(document.getElementById('analyzeSlider').value)||100;clearLog();loggedLines=0;addLog(`Starting batch analysis — max ${limit} reviews`);setBtns(true);try{const r=await api('/api/analyze-all',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({limit})});if(!r.success){toast('Error: '+r.error);setBtns(false);return;}startPoll();}catch(e){toast('Failed: '+e.message);setBtns(false);}}
+
+// ── MANUAL ANALYSIS ───────────────────────────────────────────────────────────
+async function runManual(){
+  const text=document.getElementById('manInput').value.trim();
+  if(!text){toast('Please enter a review text first');return;}
+  const btn=document.getElementById('manBtn');
+  btn.disabled=true;btn.textContent='Processing...';
+  ['ms1','ms2','ms3','ms4'].forEach(id=>setStep(id,''));
+  ['ar1','ar2','ar3'].forEach(id=>document.getElementById(id).classList.remove('lit'));
+  setStep('ms1','run');
+  document.getElementById('manResult').innerHTML='<div style="text-align:center;padding:2rem"><div class="spin" style="margin:0 auto 8px"></div><div style="font-size:12px;color:var(--t3)">Processing through pipeline...</div></div>';
+  try{
+    const wait=ms=>new Promise(r=>setTimeout(r,ms));
+    await wait(450);setStep('ms1','done');document.getElementById('ar1').classList.add('lit');
+    setStep('ms2','run');
+    const r=await api('/api/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text})});
+    if(!r.success)throw new Error(r.error);
+    const d=r.data;await wait(350);setStep('ms2','done');
+    if(d.is_complaint===false){setStep('ms3','skip');setStep('ms4','skip');}
+    else{document.getElementById('ar2').classList.add('lit');setStep('ms3','run');await wait(450);setStep('ms3','done');if(d.escalated){document.getElementById('ar3').classList.add('lit');setStep('ms4','run');await wait(450);setStep('ms4','esc');}else setStep('ms4','done');}
+    const conf=(d.is_complaint===false||d.classification_confidence===0)?d.sentiment_confidence:Math.min(d.sentiment_confidence,d.classification_confidence);
+    const pct=(conf*100).toFixed(0);const cc=conf>=.8?'var(--green)':conf>=.7?'#d97706':'var(--red)';
+    document.getElementById('manResult').innerHTML=`<div class="res-grid" style="margin-bottom:10px"><div class="res-item"><div class="res-key">Sentiment</div>${sentBadge(d.sentiment)}</div><div class="res-item"><div class="res-key">Category</div><div class="res-val" style="font-size:12px">${esc(d.category||'—')}</div></div><div class="res-item"><div class="res-key">Sub-category</div><div class="res-val" style="font-size:12px">${esc(d.subcategory||'—')}</div></div><div class="res-item"><div class="res-key">Confidence</div><div class="res-val" style="color:${cc}">${pct}%</div><div class="conf-bar"><div class="conf-fill" style="width:${pct}%;background:${cc}"></div></div></div></div><div style="background:var(--surf2);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px;font-size:11px;color:var(--t2);line-height:1.6">${esc(d.reason)}</div>${d.escalated?'<span class="badge b-esc" style="margin-top:8px;display:inline-block">LLM Escalation</span>':''}${d.normalized&&d.normalized!==text?`<div style="margin-top:6px;font-size:10px;color:var(--t3);font-style:italic">Normalized: ${esc(d.normalized)}</div>`:''}`;
+  }catch(e){toast('Error: '+e.message);['ms1','ms2','ms3','ms4'].forEach(id=>setStep(id,''));['ar1','ar2','ar3'].forEach(id=>document.getElementById(id).classList.remove('lit'));document.getElementById('manResult').innerHTML=`<div style="color:var(--red);font-size:12px;padding:1rem">❌ ${esc(e.message)}</div>`;}
+  btn.disabled=false;btn.innerHTML='<i class="ti ti-player-play"></i> Run Analysis';
+}
+
+// ── EXPORT ────────────────────────────────────────────────────────────────────
+async function doExport(){
+  const sent=document.getElementById('expSent').value;
+  const l1=document.getElementById('expL1').value;
+  const status=document.getElementById('expStatus');
+  status.innerHTML='<span class="spin" style="vertical-align:middle;margin-right:6px"></span> Preparing file...';
+  let url='/api/export/excel';
+  const p=[];
+  if(sent)p.push(`sentiment=${encodeURIComponent(sent)}`);
+  if(l1)p.push(`layer1=${encodeURIComponent(l1)}`);
+  if(p.length)url+='?'+p.join('&');
+  try{
+    const a=document.createElement('a');a.href=url;a.download='SETRUM_Hasil_Analisis.xlsx';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    status.innerHTML='✅ Download started!';setTimeout(()=>status.textContent='',5000);
+  }catch(e){status.innerHTML=`❌ Error: ${e.message}`;}
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+async function refreshAll(){await Promise.all([checkHealth(),loadStats(),loadMini(),checkPending()]);}
+refreshAll();
+setInterval(checkHealth,30000);
+</script>
+</body>
+</html>

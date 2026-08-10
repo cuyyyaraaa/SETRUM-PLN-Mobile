@@ -1,0 +1,27 @@
+# --- Inti sistem (dashboard) ---
+Flask==3.0.3
+flask-cors==4.0.1
+python-dotenv==1.0.1
+google-play-scraper==1.2.7
+
+# --- NLP preprocessing (Agent 1: normalizer) ---
+# PySastrawi = stemmer Bahasa Indonesia, dipakai di backend/agents/normalizer.py.
+# Tanpa ini, normalizer diam-diam jalan tanpa stemming (lazy-load try/except) --
+# hasil normalisasi teks jadi beda dari yang sudah divalidasi, jadi WAJIB ada.
+PySastrawi>=1.2.1
+
+# --- Model lokal (sentimen & klasifikasi) ---
+# CPU cukup untuk inferensi; GPU dipakai saat training di Colab.
+torch>=2.2
+transformers>=4.40
+safetensors>=0.4
+
+# --- Training & evaluasi ---
+datasets>=2.19
+scikit-learn>=1.4
+pandas>=2.2
+numpy>=1.26
+openpyxl>=3.1
+
+# --- Unduh model aman (anti-korup) ---
+huggingface_hub>=0.23

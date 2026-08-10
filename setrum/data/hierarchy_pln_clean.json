@@ -1,0 +1,1530 @@
+[
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "ID Pelanggan",
+    "l5": "Gagal Input IDPEL / IDPEL tidak ditemukan",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "ID Pelanggan",
+    "l5": "IDPEL Tidak Bisa Dihapus",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "ID Pelanggan",
+    "l5": "IDPEL Tidak Bisa Ditambah/Maksimal IDPEL yang bisa didaftarkan",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "ID Pelanggan",
+    "l5": "IDPEL Hilang / IDPEL Digunakan Pihak Lain",
+    "param": "Security Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "Riwayat Penggunaan Listrik (Pasca/Pra)",
+    "l5": "Riwayat Penggunaan Tidak Muncul / Tidak Sesuai",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "Data Diri",
+    "l5": "Tidak Bisa Ubah Data Diri",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "Data Diri",
+    "l5": "Permintaan Verifikasi ID Tidak Dapat Diajukan",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "Alamat",
+    "l5": "Kesalahan Koordinat Lokasi",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "Undang Anggota",
+    "l5": "Tidak Bisa Undang Anggota",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "Login dan Register",
+    "l5": "OTP Tidak Masuk/salah/melebihi batas maksimal",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "Login dan Register",
+    "l5": "Tidak Bisa Registrasi/ Susah Login",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "Login dan Register",
+    "l5": "No HP/Email Sudah Terdaftar dengan Nama Orang Lain",
+    "param": "Security Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "Login dan Register",
+    "l5": "Tidak bisa install",
+    "param": "Compatibility Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "Login dan Register",
+    "l5": "Tidak bisa verifikasi no Hp/email",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "Hapus Akun",
+    "l5": "Tidak Bisa Hapus Akun",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Token & Pembayaran",
+    "l4": "Masukkan Nomor IDPEL",
+    "l5": "IDPEL Tidak Ditemukan",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Token & Pembayaran",
+    "l4": "Beli Token",
+    "l5": "Status Payment Berhasil tapi Token Tidak Muncul / Lama",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Token & Pembayaran",
+    "l4": "Beli Token",
+    "l5": "Status Payment Gagal tapi Saldo Terpotong",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Token & Pembayaran",
+    "l4": "Bayar Tagihan",
+    "l5": "Status Payment Berhasil tapi Tagihan Tidak Lunas",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Token & Pembayaran",
+    "l4": "Bayar Tagihan",
+    "l5": "Status Payment Gagal tapi Saldo Terpotong",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Token & Pembayaran",
+    "l4": "Bayar Tagihan",
+    "l5": "Tagihan Tidak Muncul",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Token & Pembayaran",
+    "l4": "Metode Pembayaran",
+    "l5": "Metode Pembayaran Tidak Bisa Dipilih",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Token & Pembayaran",
+    "l4": "Metode Pembayaran",
+    "l5": "Tidak bisa lanjutkan pembayaran",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Token & Pembayaran",
+    "l4": "Metode Pembayaran",
+    "l5": "Pilihan Metode Pembayaran Terbatas / Keluhan Biaya Admin",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "PLN Non Taglis (PB/PD/PS/P2TL)",
+    "l4": "Masukkan Nomor Registrasi",
+    "l5": "Nomor Registrasi Tidak Terdaftar",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "PLN Non Taglis (PB/PD/PS/P2TL)",
+    "l4": "Masukkan Nomor Registrasi",
+    "l5": "Tagihan Tidak Muncul",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "PLN Non Taglis (PB/PD/PS/P2TL)",
+    "l4": "Masukkan Nomor Registrasi",
+    "l5": "Tagihan Tidak Sesuai",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "PLN Non Taglis (PB/PD/PS/P2TL)",
+    "l4": "Masukkan Nomor Registrasi",
+    "l5": "Tagihan Tidak Bisa Dibayar",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "PLN Non Taglis (PB/PD/PS/P2TL)",
+    "l4": "Bayar Tagihan",
+    "l5": "Status Payment Berhasil tapi Tagihan Tidak Lunas",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "PLN Non Taglis (PB/PD/PS/P2TL)",
+    "l4": "Bayar Tagihan",
+    "l5": "Status Payment Gagal tapi Saldo Terpotong",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "PLN Non Taglis (PB/PD/PS/P2TL)",
+    "l4": "Metode Pembayaran",
+    "l5": "Metode Pembayaran Tidak Bisa Dipilih",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "PLN Non Taglis (PB/PD/PS/P2TL)",
+    "l4": "Metode Pembayaran",
+    "l5": "Tidak bisa lanjutkan pembayaran",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "PLN Non Taglis (PB/PD/PS/P2TL)",
+    "l4": "Metode Pembayaran",
+    "l5": "Pilihan Metode Pembayaran Terbatas",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Lacak Pengaduan Anda",
+    "l5": "Status Pengaduan Tidak Update",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Cek Padam Sekitar Saya",
+    "l5": "Fitur Tidak Bisa Digunakan",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Cek Padam Sekitar Saya",
+    "l5": "Informasi Tidak Sesuai",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Cari Topik Pengaduan",
+    "l5": "Topik Pengaduan Tidak Update",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Listrik Padam/Keandalan Jaringan Distribusi",
+    "l5": "Tidak Bisa Submit Pengaduan",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Listrik Padam/Keandalan Jaringan Distribusi",
+    "l5": "Tidak Menerima Notifikasi Pemadaman / Tidak Update",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "kWh Meter Meter Pra/Paskabayar",
+    "l5": "Tidak Bisa Submit Pengaduan",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "kWh Meter Meter Pra/Paskabayar",
+    "l5": "Tahapan Pengaduan Meter \"Periksa\" Terlalu Panjang",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "kWh Meter Meter Pra/Paskabayar",
+    "l5": "Token Expired / Tidak Bisa Digunakan",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Pasang Baru, Perubahan Daya dan Penyambungan Sementara",
+    "l5": "Status Payment Gagal tapi Saldo Terpotong",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Pasang Baru, Perubahan Daya dan Penyambungan Sementara",
+    "l5": "Status Permohonan Tidak Update",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Layanan Kelistrikan",
+    "l5": "Tidak Bisa Submit Pengaduan",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Contact Us",
+    "l5": "Fitur Live Chat Tidak Bisa Digunakan",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Layanan Informasi",
+    "l5": "PLN Answers (FAQ) Tidak Update",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Catat Meter",
+    "l4": "SWACAM",
+    "l5": "SWACAM Tidak Dapat Digunakan",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Sambung Baru LSP Plus",
+    "l4": "Proses Pembuatan Permohonan",
+    "l5": "Tidak Paham dengan Alur LSP / Alur Permohonan Rumit",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Sambung Baru LSP Plus",
+    "l4": "Proses Pembuatan Permohonan",
+    "l5": "Tidak terima verifikasi email",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Ubah Daya, Migrasi, dan Penyambungan Sementara",
+    "l4": "Proses Pembuatan Permohonan",
+    "l5": "Alur Permohonan Rumit / UU PDP",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Ubah Daya, Migrasi, dan Penyambungan Sementara",
+    "l4": "Proses Pembuatan Permohonan",
+    "l5": "Tidak terima verifikasi email",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Simulasi Biaya",
+    "l4": "PB/PD/PS/SLO",
+    "l5": "Pengisian Formulir Rumit",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Simulasi Biaya",
+    "l4": "PB/PD/PS/SLO",
+    "l5": "Perhitungan Biaya Membingungkan",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Simulasi Biaya",
+    "l4": "PB/PD/PS/SLO",
+    "l5": "Aplikasi Error",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "E-Billing",
+    "l4": "Ganti/Berhenti E-Billing",
+    "l5": "Tidak Bisa / Gagal Berhenti E-Billing",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "E-Billing",
+    "l4": "Tambahkan Email Untuk E-Billing",
+    "l5": "Tidak Bisa / Gagal Daftar E-Billing",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "Data Diri",
+    "l5": "Permintaan Verifikasi ID Belum Ada Jawaban",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Akun PLN Mobile",
+    "l4": "Data Diri",
+    "l5": "Permintaan Verifikasi ID Ditolak",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Listrik Padam/Keandalan Jaringan Distribusi",
+    "l5": "Respon Lambat terhadap Laporan Padam",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Listrik Padam/Keandalan Jaringan Distribusi",
+    "l5": "Laporan Selesai/Batal tanpa Ditindaklanjuti",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Listrik Padam/Keandalan Jaringan Distribusi",
+    "l5": "Ketidaksesuaian Layanan Petugas Unit",
+    "param": "Assurance Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Listrik Padam/Keandalan Jaringan Distribusi",
+    "l5": "Tegangan Drop/Tinggi",
+    "param": "Tangible Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Listrik Padam/Keandalan Jaringan Distribusi",
+    "l5": "Tiang Miring/Roboh/Keropos; Kabel Menjuntai; Pangkas Pohon; dsb",
+    "param": "Tangible Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Listrik Padam/Keandalan Jaringan Distribusi",
+    "l5": "Frekuensi dan durasi padam",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "kWh Meter Prabayar Meter Pra/Paskabayar",
+    "l5": "kWh meter rusak / tidak berfungsi",
+    "param": "Tangible Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "kWh Meter Prabayar Meter Pra/Paskabayar",
+    "l5": "Pengaduan / Penggantian Belum Ditindaklanjuti",
+    "param": "Tangible Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "kWh Meter Prabayar Meter Pra/Paskabayar",
+    "l5": "kWh meter muncul \"Periksa\" / \"Error\"",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "kWh Meter Prabayar Meter Pra/Paskabayar",
+    "l5": "Konversi Sisa Token belum diterima",
+    "param": "Assurance Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "kWh Meter Prabayar Meter Pra/Paskabayar",
+    "l5": "kWh meter dirasa cepat habis",
+    "param": "Tangible Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Pasang Baru, Perubahan Daya dan Penyambungan Sementara",
+    "l5": "Refund Belum Diterima",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Pasang Baru, Perubahan Daya dan Penyambungan Sementara",
+    "l5": "Tidak Bisa Submit Pengaduan",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Pasang Baru, Perubahan Daya dan Penyambungan Sementara",
+    "l5": "Belum Ada Realisasi",
+    "param": "Assurance Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Pengaduan Pasang Baru, Perubahan Daya dan Penyambungan Sementara",
+    "l5": "Ketidaksesuaian Layanan Petugas Unit",
+    "param": "Assurance Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Keluhan Layanan Kelistrikan",
+    "l5": "Respon lambat terhadap Laporan Keluhan",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Keluhan Layanan Kelistrikan",
+    "l5": "Keluhan Selesai/Batal tanpa Ditindaklanjuti",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Keluhan Layanan Kelistrikan",
+    "l5": "Keluhan Tusbung",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Keluhan Layanan Kelistrikan",
+    "l5": "Keluhan P2TL",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Keluhan Layanan Kelistrikan",
+    "l5": "Keluhan Geser APP",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Contact Us",
+    "l5": "Respon Petugas CC PLN123 Lama",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Contact Us",
+    "l5": "Ketidaksesuaian Layanan Petugas CC PLN123",
+    "param": "Assurance Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Contact Us",
+    "l5": "Respon tidak solutif (Non CC PLN123)",
+    "param": "Empathy Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Pengaduan",
+    "l4": "Layanan Informasi",
+    "l5": "Informasi Kelistrikan Tidak Sesuai",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Catat Meter",
+    "l4": "Pengaduan Catat Meter",
+    "l5": "Ketidaksesuaian Layanan Petugas Unit",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Catat Meter",
+    "l4": "Pengaduan Catat Meter",
+    "l5": "Angka Stand Meter Tidak Sesuai / Keluhan Lonjakan Tagihan",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Catat Meter",
+    "l4": "SWACAM",
+    "l5": "Perbedaan catat meter SWACAM dan petugas",
+    "param": "Tangible Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Sambung Baru LSP Plus",
+    "l4": "Proses Pembuatan Permohonan",
+    "l5": "Kendala NIDI dan SLO",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Sambung Baru LSP Plus",
+    "l4": "Proses Pembuatan Permohonan",
+    "l5": "Instalatir tidak tersedia",
+    "param": "Assurance Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Subsidi Listrik",
+    "l4": "PB/PD/Balik Nama",
+    "l5": "Data Subsidi Sudah Digunakan/Tidak Sesuai",
+    "param": "Assurance Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Subsidi Listrik",
+    "l4": "PB/PD/Balik Nama",
+    "l5": "Keluhan Subsidi",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "KETENAGALISTRIKAN",
+    "l3": "Subsidi Listrik",
+    "l4": "PB/PD/Balik Nama",
+    "l5": "Balik Nama Belum realisasi",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Saldo PLN Mobile",
+    "l4": "Saldo Pendapatan",
+    "l5": "Saldo Tidak Diterima",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Saldo PLN Mobile",
+    "l4": "Saldo Refund",
+    "l5": "Saldo Tidak Diterima",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Saldo PLN Mobile",
+    "l4": "Saldo Refund",
+    "l5": "Saldo Refund Lama Diterima",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Saldo PLN Mobile",
+    "l4": "Saldo Refund",
+    "l5": "Saldo Refund Tidak Sesuai",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Saldo PLN Mobile",
+    "l4": "Tarik Saldo",
+    "l5": "Saldo Tidak Diterima",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Saldo PLN Mobile",
+    "l4": "Aktivasi",
+    "l5": "Gagal Aktivasi",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Saldo PLN Mobile",
+    "l4": "Aktivasi",
+    "l5": "OTP Tidak Masuk",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ICONNET",
+    "l4": "Cek Coverage",
+    "l5": "Coverage Tidak Sesuai",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ICONNET",
+    "l4": "Pendaftaran Baru",
+    "l5": "Alur Permohonan Rumit",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ICONNET",
+    "l4": "Billing / Refund",
+    "l5": "Billing Tidak Sesuai",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ICONNET",
+    "l4": "Billing / Refund",
+    "l5": "Billing Tidak Bisa Dibayar",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ICONNET",
+    "l4": "Billing / Refund",
+    "l5": "Refund Belum Diterima",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPKLU",
+    "l5": "Ketidaksesuaian Lokasi SPKLU R4 dan R2",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPKLU",
+    "l5": "Gagal / Partial Charging / Error Aplikasi",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPKLU",
+    "l5": "Proses Charging Rumit / Sulit",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPKLU",
+    "l5": "Gagal Menambahkan Kendaraan Baru",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPLU",
+    "l5": "Ketidaksesuaian Lokasi SPLU",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPLU",
+    "l5": "Proses Charging Rumit / Sulit",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPBKLU",
+    "l5": "Ketidaksesuaian Lokasi SPBKLU R2/R4",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPBKLU",
+    "l5": "Proses Charging Rumit / Sulit",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPBKLU",
+    "l5": "Gagal Menambahkan Kendaraan Baru",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "Home Charging Service",
+    "l5": "Alur Permohonan Rumit",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "Home Charging Service",
+    "l5": "Status Payment Gagal tapi Saldo Terpotong",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "Marketplace",
+    "l5": "Fitur Error",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "Marketplace",
+    "l5": "Status Payment Gagal tapi Saldo Terpotong",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "LISTRIQU",
+    "l4": "Pendaftaran",
+    "l5": "Alur Permohonan Rumit",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "LISTRIQU",
+    "l4": "Pembayaran",
+    "l5": "Status Payment Gagal tapi Saldo Terpotong",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "MARKETPLACE",
+    "l4": "Produk",
+    "l5": "Varian Barang Sedikit / Tidak Update",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "MARKETPLACE",
+    "l4": "Produk",
+    "l5": "Produk Barang / Jasa Tidak Bisa Dipilih (Error)",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "MARKETPLACE",
+    "l4": "Pembayaran",
+    "l5": "Status Payment Gagal tapi Saldo Terpotong",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "MARKETPLACE",
+    "l4": "Pengiriman",
+    "l5": "Status Pengiriman Tidak Update",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "MARKETPLACE",
+    "l4": "Pengembalian Dana",
+    "l5": "Refund Belum Diterima",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Pulsa & Tagihan",
+    "l4": "PDAM, BPJS, PULSA, PAKET DATA",
+    "l5": "Tagihan Tidak Tersedia",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Pulsa & Tagihan",
+    "l4": "PDAM, BPJS, PULSA, PAKET DATA",
+    "l5": "Status Payment Gagal tapi Saldo Terpotong",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Pulsa & Tagihan",
+    "l4": "PDAM, BPJS, PULSA, PAKET DATA",
+    "l5": "Status Payment Berhasil tapi Tagihan Tidak Lunas",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Pulsa & Tagihan",
+    "l4": "PDAM, BPJS, PULSA, PAKET DATA",
+    "l5": "Fitur Error",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS ATAP",
+    "l4": "Perizinan",
+    "l5": "Alur Permohonan Rumit",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS ATAP",
+    "l4": "Perizinan",
+    "l5": "Gagal Upload Dokumen",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS ATAP",
+    "l4": "Perizinan",
+    "l5": "Status Permohonan Tidak Update",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS ATAP",
+    "l4": "Simulasi Biaya",
+    "l5": "Pengisian Formulir Rumit",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS ATAP",
+    "l4": "Simulasi Biaya",
+    "l5": "Perhitungan Biaya Membingungkan",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS ATAP",
+    "l4": "Simulasi Biaya",
+    "l5": "Aplikasi Error",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS ATAP",
+    "l4": "Pendaftaran Baru",
+    "l5": "Alur Permohonan Rumit",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS ATAP",
+    "l4": "Pendaftaran Baru",
+    "l5": "Status Permohonan Tidak Update",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS ATAP",
+    "l4": "Pendaftaran Baru",
+    "l5": "Aplikasi Error",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS ATAP",
+    "l4": "Monitoring Energi",
+    "l5": "Data Tidak Update",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS ATAP",
+    "l4": "Monitoring Energi",
+    "l5": "Aplikasi Error",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS ATAP",
+    "l4": "Produk PLTS Atap",
+    "l5": "Info Produk Tidak Lengkap/Kuota Sedikit",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS ATAP",
+    "l4": "Pengaduan",
+    "l5": "Tagihan Tidak Sesuai",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ICONPLAY",
+    "l4": "Pendaftaran Baru",
+    "l5": "Alur Permohonan Rumit",
+    "param": "Usability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ICONPLAY",
+    "l4": "Pendaftaran Baru",
+    "l5": "Tidak Bisa Mendaftar",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ICONPLAY",
+    "l4": "Kualitas Layanan (Konten)",
+    "l5": "Konten Tidak Update",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ICONPLAY",
+    "l4": "Kualitas Layanan (Konten)",
+    "l5": "Kualitas Streaming Jelek / Lemot",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ICONPLAY",
+    "l4": "Pembayaran",
+    "l5": "Status Payment Gagal tapi Saldo Terpotong",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ICONPLAY",
+    "l4": "Pembayaran",
+    "l5": "Status Payment Berhasil tapi Tagihan Tidak Lunas",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "ICONPLAY",
+    "l4": "Pembayaran",
+    "l5": "Tidak Ada Notifikasi Pembayaran Perpanjangan Paket",
+    "param": "Functional Suitability Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Promosi, Informasi & Event",
+    "l4": "Promo / Event yang Sedang Berlangsung",
+    "l5": "Voucher Tidak Diterima",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Promosi, Informasi & Event",
+    "l4": "Promo / Event yang Sedang Berlangsung",
+    "l5": "Voucher  Sudah Terpakai",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Promosi, Informasi & Event",
+    "l4": "Promo / Event yang Sedang Berlangsung",
+    "l5": "Voucher Kadaluarsa / Hilang",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "APLIKASI",
+    "l2": "BEYOND KWH",
+    "l3": "Promosi, Informasi & Event",
+    "l4": "Promo / Event yang Sedang Berlangsung",
+    "l5": "Aplikasi Error",
+    "param": "Performance Apps"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ICONNET",
+    "l4": "Pendaftaran Baru",
+    "l5": "Belum Ada Realisasi",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ICONNET",
+    "l4": "Pengaduan",
+    "l5": "Koneksi Internet Lambat",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ICONNET",
+    "l4": "Pengaduan",
+    "l5": "Tidak Ada Koneksi Internet",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ICONNET",
+    "l4": "Pengaduan",
+    "l5": "Respon Lambat terhadap Laporan Pengaduan",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ICONNET",
+    "l4": "Pengaduan",
+    "l5": "Ketidaksesuaian Layanan Petugas Contact Center",
+    "param": "Assurance Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPKLU",
+    "l5": "SPKLU R2/R4 Rusak / Mati",
+    "param": "Tangible Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPKLU",
+    "l5": "Respon tidak solutif (Non CC PLN123)",
+    "param": "Empathy Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPKLU",
+    "l5": "Saran SPKLU",
+    "param": "Reliability Apps"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPLU",
+    "l5": "SPLU Rusak / Mati",
+    "param": "Tangible Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPLU",
+    "l5": "Respon tidak solutif (Non CC PLN123)",
+    "param": "Empathy Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPBKLU",
+    "l5": "SPBKLU Rusak / Mati",
+    "param": "Tangible Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "SPBKLU",
+    "l5": "Respon tidak solutif (Non CC PLN123)",
+    "param": "Empathy Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "Home Charging Service",
+    "l5": "Belum Ada Realisasi",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "Home Charging Service",
+    "l5": "Petugas Tidak Kompeten",
+    "param": "Assurance Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "Home Charging Service",
+    "l5": "Respon tidak solutif (Non CC PLN123)",
+    "param": "Empathy Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "Marketplace",
+    "l5": "Barang Belum Diterima",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "Marketplace",
+    "l5": "Barang Tidak Sesuai Pesanan / Rusak",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ELECTRIC VEHICLE",
+    "l4": "Marketplace",
+    "l5": "Penjual Tidak Responsif",
+    "param": "Responsiveness Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ListriQu",
+    "l4": "Pelaksanaan Perbaikan",
+    "l5": "Petugas Tidak Kompeten",
+    "param": "Assurance Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ListriQu",
+    "l4": "Pelaksanaan Perbaikan",
+    "l5": "Respon Lambat terhadap Laporan Gangguan",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ListriQu",
+    "l4": "Pembayaran",
+    "l5": "Harga Tidak Standar",
+    "param": "Assurance Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "MARKETPLACE",
+    "l4": "Ketidaksesuaian Pesanan",
+    "l5": "Barang Belum Diterima",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "MARKETPLACE",
+    "l4": "Ketidaksesuaian Pesanan",
+    "l5": "Barang Tidak Sesuai Pesanan / Rusak",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "MARKETPLACE",
+    "l4": "Ketidaksesuaian Pesanan",
+    "l5": "Kualitas Jasa / Pekerjaan Tidak Baik",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "MARKETPLACE",
+    "l4": "Ketidaksesuaian Pesanan",
+    "l5": "Petugas Jasa Tidak Datang",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "MARKETPLACE",
+    "l4": "Respon Penjual Lambat",
+    "l5": "Penjual Barang Tidak Responsif",
+    "param": "Responsiveness Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "MARKETPLACE",
+    "l4": "Respon Penjual Lambat",
+    "l5": "Penyedia Jasa Tidak Responsif",
+    "param": "Responsiveness Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "MARKETPLACE",
+    "l4": "Pengaduan",
+    "l5": "Respon tidak solutif (Non CC PLN123)",
+    "param": "Empathy Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "MARKETPLACE",
+    "l4": "Pengaduan",
+    "l5": "Terjadi Kerusakan / Kehilangan saat Pelaksanaan Pekerjaan",
+    "param": "Assurance Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS Atap",
+    "l4": "Perizinan",
+    "l5": "Belum Ada Jawaban Perizinan",
+    "param": "Responsiveness Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS Atap",
+    "l4": "Pendaftaran Baru",
+    "l5": "Belum Ada Konfirmasi / Petugas Tidak Datang",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "PLTS Atap",
+    "l4": "Pengaduan",
+    "l5": "PLTS Rusak",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ICONPLAY",
+    "l4": "Kualitas Layanan (Konten)",
+    "l5": "Paket Terlalu Mahal (Konten & Biaya Tidak Sebanding)",
+    "param": "Assurance Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "ICONPLAY",
+    "l4": "Pengaduan",
+    "l5": "Respon tidak solutif (Non CC PLN123)",
+    "param": "Empathy Service"
+  },
+  {
+    "l1": "LAYANAN",
+    "l2": "BEYOND KWH",
+    "l3": "Promosi, Informasi & Event",
+    "l4": "Promo / Event yang Sedang Berlangsung",
+    "l5": "Informasi Produk/Event Tidak Sesuai",
+    "param": "Reliability Service"
+  },
+  {
+    "l1": "UMUM",
+    "l2": "UMUM",
+    "l3": "Citra / Branding Negatif Perusahaan",
+    "l4": "",
+    "l5": "",
+    "param": null
+  },
+  {
+    "l1": "UMUM",
+    "l2": "UMUM",
+    "l3": "Tidak Deskriptif",
+    "l4": "",
+    "l5": "",
+    "param": null
+  },
+  {
+    "l1": "UMUM",
+    "l2": "UMUM",
+    "l3": "Salah Mengartikan Bintang 1",
+    "l4": "",
+    "l5": "",
+    "param": null
+  },
+  {
+    "l1": "UMUM",
+    "l2": "UMUM",
+    "l3": "Saran UI/UX Tanpa Keterangan Fitur/Menu",
+    "l4": "",
+    "l5": "",
+    "param": null
+  },
+  {
+    "l1": "UMUM",
+    "l2": "UMUM",
+    "l3": "Keluhan Teknis secara Aplikasi",
+    "l4": "",
+    "l5": "",
+    "param": null
+  }
+]
